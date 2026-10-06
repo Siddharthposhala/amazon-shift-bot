@@ -95,6 +95,7 @@ def check_shifts():
         latest_status_message = status_text
         
         if response.status_code != 200:
+            send_alert("The bot has stopped Due to 403 Error")
             return
 
         data = response.json()
@@ -153,7 +154,13 @@ if __name__ == "__main__":
 
     send_alert("🟢 Bot successfully deployed to Render! Monitoring active.")
     print("Bot loop started...")
-
+     x = 1800
     while True:
         check_shifts()
         time.sleep(2)
+        x+=2
+        if (x % 1800 == 0):
+            x=1800
+            send_alert("Bot is Active && Login into your AMAZON ACCOUNT")
+            
+            
