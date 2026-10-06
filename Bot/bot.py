@@ -57,6 +57,7 @@ def send_alert(text):
             print(f"Failed to alert {cid}: {e}")
 
 def check_shifts():
+    global latest_status_message 
     url = "https://www.jobsatamazon.co.uk/graphql"
     current_time_ms = str(int(time.time() * 1000))
     headers = {
@@ -134,6 +135,7 @@ def check_shifts():
 # ----------------- DUMMY SERVER FOR RENDER -----------------
 class RenderHealthServer(BaseHTTPRequestHandler):
     def do_GET(self):
+        global latest_status_message 
         self.send_response(200)
         self.end_headers()
         self.wfile.write(latest_status_message.encode("utf-8"))
