@@ -119,7 +119,7 @@ def check_shifts():
                 apply_url = f"https://www.jobsatamazon.co.uk/application/uk/?CS=true&jobId={job_id}&locale=en-GB&ssoEnabled=1#/consent?CS=true&jobId={job_id}&locale=en-GB&ssoEnabled=1"
 
                 alert_text = (
-                    f"📍 {address},{city}) {postal_code}\n"
+                    f"📍 ({address},{city}) {postal_code}\n"
                     f"🏷️ {title} | 1\n"
                     f"💼 {job_type} | {emp_type}\n"
                     f"💰 {pay_min}\n\n"
