@@ -6,6 +6,7 @@ from http.server import HTTPServer, BaseHTTPRequestHandler
 import requests
 
 # ----------------- TELEGRAM & LOGIC SETUP -----------------
+latest_status_message = "Initializing bot..."
 TELEGRAM_BOT_TOKEN = "8876339427:AAFcMwDl86tFhSwSsoIGBZHMPRg_zQzerd0"
 CHAT_IDS = ["995130827", "8914774840"]
 
@@ -87,8 +88,12 @@ def check_shifts():
 
     try:
         response = session.post(url, json=payload, headers=headers, timeout=10)
+        # Update the web server message with the live status
+        status_text = f"[{time.strftime('%H:%M:%S')}] HTTP Status: {response.status_code}"
+        print(status_text)
+        latest_status_message = status_text
+        
         if response.status_code != 200:
-            print(f"[{time.strftime('%H:%M:%S')}] HTTP Status: {response.status_code}")
             return
 
         data = response.json()
@@ -131,7 +136,7 @@ class RenderHealthServer(BaseHTTPRequestHandler):
     def do_GET(self):
         self.send_response(200)
         self.end_headers()
-        self.wfile.write(b"Amazon Shift Bot is Online!")
+        self.wfile.write(latest_status_message.encode("utf-8"))
 
 def run_render_server():
     # Render binds automatically to the PORT environment variable (default 10000)
