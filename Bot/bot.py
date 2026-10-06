@@ -154,7 +154,7 @@ if __name__ == "__main__":
 
     send_alert("🟢 Bot successfully deployed to Render! Monitoring active.")
     print("Bot loop started...")
-     x = 1800
+    x = 1800
     while True:
         check_shifts()
         time.sleep(2)
