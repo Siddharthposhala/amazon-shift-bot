@@ -161,6 +161,6 @@ if __name__ == "__main__":
         x+=2
         if (x % 1800 == 0):
             x=1800
-            send_alert("Bot is Active && Login into your AMAZON ACCOUNT")
+            send_alert("Bot is Active & Login into your AMAZON ACCOUNT")
             
             
